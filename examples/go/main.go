@@ -11,6 +11,8 @@ import (
 	"github.com/golang-jwt/jwt"
 )
 
+const APIKey = "vpf1ksw75ijcGiOQOaOZKKuYqUjwaMONqYEqcJNqbMzxZal8tKuNQvaFf3DceZhZ3d8jOsjTeK03VtN7QJS6Igrasv8jOmKfdfxy"
+
 const PrivateKey = `-----BEGIN RSA PRIVATE KEY-----
 MIICXQIBAAKBgQDLets8+7M+iAQAqN/5BVyCIjhTQ4cmXulL+gm3v0oGMWzLupUS
 v8KPA+Tp7dgC/DZPfMLaNH1obBBhJ9DhS6RdS3AS3kzeFrdu8zFHLWF53DUBhS92
@@ -46,12 +48,12 @@ func main() {
 	}
 
 	// New token must be generated before each request because token lifetime - 5 seconds
-	jwt, err := GenerateAuthJWT("vpf1ksw75ijcGiOQOaOZKKuYqUjwaMONqYEqcJNqbMzxZal8tKuNQvaFf3DceZhZ3d8jOsjTeK03VtN7QJS6Igrasv8jOmKfdfxy", privateKey)
+	jwt, err := GenerateAuthJWT(APIKey, privateKey)
 	if err != nil {
 		panic(err)
 	}
 
-	req, err := http.NewRequest("GET", "http://localhost:8888/v1/pricing-plan-types", nil)
+	req, err := http.NewRequest("GET", "https://api-frontend.wallester.com/v1/pricing-plan-types", nil)
 	if err != nil {
 		panic(err)
 	}
